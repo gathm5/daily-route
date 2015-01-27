@@ -18,7 +18,8 @@ module.exports = function (grunt) {
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'app',
-        dist: 'dist'
+        dist: 'dist',
+        appBuild: require('./bower.json').appBuild || 'appBuild'
     };
 
     // Define the configuration for all the tasks
@@ -183,6 +184,22 @@ module.exports = function (grunt) {
             }
         },
 
+        'inline_angular_templates': {
+            dist: {
+                options: {
+                    base: '<%= yeoman.dist %>', // (Optional) ID of the <script> tag will be relative to this folder. Default is project dir.
+                    prefix: '/',            // (Optional) Prefix path to the ID. Default is empty string.
+                    selector: 'body',       // (Optional) CSS selector of the element to use to insert the templates. Default is `body`.
+                    method: 'append'       // (Optional) DOM insert method. Default is `prepend`.
+                },
+                files: {
+                    '<%= yeoman.dist %>/index.html': [
+                        '<%= yeoman.dist %>/views/**'
+                    ]
+                }
+            }
+        },
+
         // Automatically inject Bower components into the app
         wiredep: {
             app: {
@@ -335,12 +352,14 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>',
                         dest: '<%= yeoman.dist %>',
                         src: [
-                            '*.{ico,png,txt}',
+                            '*.{ico,png,txt,html}',
                             '.htaccess',
-                            '*.html',
-                            'views/{,*/}*.html',
-                            'images/{,*/}*.{webp}',
-                            'fonts/{,*/}*.*'
+                            'config.xml',
+                            'res/**',
+                            'views/**',
+                            'icon.png',
+                            'images/**',
+                            'fonts/*'
                         ]
                     },
                     {
@@ -356,6 +375,19 @@ module.exports = function (grunt) {
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            appBuild: {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.dist %>',
+                        dest: '<%= yeoman.appBuild %>',
+                        src: [
+                            '**'
+                        ]
+                    }
+                ]
             }
         },
 
@@ -427,7 +459,8 @@ module.exports = function (grunt) {
         'uglify',
         //'filerev',
         'usemin',
-        'htmlmin'
+        'htmlmin',
+        'copy:appBuild'
     ]);
 
     grunt.registerTask('default', [

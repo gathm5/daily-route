@@ -6,13 +6,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
+    <!-- build:css({.tmp,app}) styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/gs-angular-directives/gs-angular-directives.css">
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/daily-route.css">
     <!-- endbuild -->
 </head>
@@ -46,14 +46,14 @@
     ga('send', 'pageview');
 </script>
 
-<!-- build:js(.) scripts/oldieshim.js -->
+<!-- build:js({.tmp,app}) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.js"></script>
 <![endif]-->
 <!-- endbuild -->
 
-<!-- build:js(.) scripts/vendor.js -->
+<!-- build:js({.tmp,app}) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <script src="bower_components/angular/angular.js"></script>
@@ -65,6 +65,7 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/gs-angular-directives/gs-angular-directives.js"></script>
+<script src="bower_components/angular-tell/release/angular-tell.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
