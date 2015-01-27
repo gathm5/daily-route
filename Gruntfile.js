@@ -184,7 +184,7 @@ module.exports = function (grunt) {
             }
         },
 
-        'inline_angular_templates': {
+        inline_angular_templates: {
             dist: {
                 options: {
                     base: '<%= yeoman.dist %>', // (Optional) ID of the <script> tag will be relative to this folder. Default is project dir.
@@ -194,7 +194,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= yeoman.dist %>/index.html': [
-                        '<%= yeoman.dist %>/views/**'
+                        '<%= yeoman.dist %>/views/common/*.html'
                     ]
                 }
             }
@@ -460,6 +460,7 @@ module.exports = function (grunt) {
         //'filerev',
         'usemin',
         'htmlmin',
+        'inline_angular_templates',
         'copy:appBuild'
     ]);
 
