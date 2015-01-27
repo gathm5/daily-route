@@ -194,7 +194,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= yeoman.dist %>/index.html': [
-                        '<%= yeoman.dist %>/views/common/*.html'
+                        '<%= yeoman.dist %>/views/**/*.html'
                     ]
                 }
             }
