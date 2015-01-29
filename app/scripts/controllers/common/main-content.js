@@ -8,10 +8,14 @@
  * Controller of the dailyRouteApp
  */
 angular.module('dailyRouteApp')
-    .controller('MainContentCtrl', function ($scope) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
-    });
+    .controller('MainContentCtrl', [
+        '$scope',
+        function ($scope) {
+            $scope.$on('$$back', function (event) {
+                if (event.defaultPrevented) {
+                    return;
+                }
+                navigator.app.exitApp();
+            });
+        }
+    ]);

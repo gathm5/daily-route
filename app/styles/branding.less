@@ -1,0 +1,29 @@
+// Variables
+@text-color: #2d2d2d;
+@primary-color: #00b3eb;
+@primary-color-opposite: #fff;
+@page-background: #add8e6;
+@menu-background: rgba(0, 0, 0, 0.4);
+@big-font-size: 1.3rem;
+
+// Mixins
+.regular-font() {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.cool-font() {
+    font-family: 'Courgette', cursive;
+}
+
+.big-font() {
+    font-size: @big-font-size;
+    font-weight: 700;
+}
+
+.line-height-big() {
+    line-height: @big-font-size;
+}
+
+.page-background() {
+    background: url('../images/bg-pattern.png') repeat 0 0 @page-background !important;
+}

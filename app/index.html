@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
     <!-- build:css({.tmp,app}) styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/gs-angular-directives/gs-angular-directives.css">
     <!-- bower:css -->
@@ -46,6 +47,8 @@
     ga('send', 'pageview');
 </script>
 
+<script src="cordova.js"></script>
+
 <!-- build:js({.tmp,app}) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -66,6 +69,8 @@
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/gs-angular-directives/gs-angular-directives.js"></script>
 <script src="bower_components/angular-tell/release/angular-tell.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -75,6 +80,9 @@
 <script src="scripts/controllers/common/footer.js"></script>
 <script src="scripts/controllers/common/main-content.js"></script>
 <script src="scripts/controllers/common/menu-panel.js"></script>
+<script src="scripts/services/device-listeners.js"></script>
+<script src="scripts/controllers/dashboard/dashboard.js"></script>
+<script src="scripts/directives/route-label.js"></script>
 <!-- endbuild -->
 </body>
 </html>

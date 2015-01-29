@@ -17,7 +17,8 @@ angular
         'ngSanitize',
         'ngTouch',
         'ui.router',
-        'gsDirectives'
+        'gsDirectives',
+        'ngAutocomplete'
     ])
     .config([
         '$stateProvider',
@@ -28,23 +29,50 @@ angular
                     url: '/',
                     views: {
                         'MainContent@': {
-                            templateUrl: 'views/common/main-content.html',
+                            templateUrl: '/views/common/main-content.html',
                             controller: 'MainContentCtrl'
                         },
                         'MenuPanel@': {
-                            templateUrl: 'views/common/menu-panel.html',
+                            templateUrl: '/views/common/menu-panel.html',
                             controller: 'MenuPanelCtrl'
                         },
                         'Header@main': {
-                            templateUrl: 'views/common/header.html',
+                            templateUrl: '/views/common/header.html',
                             controller: 'HeaderCtrl'
+                        }
+                    }
+                })
+                .state('main.dashboard', {
+                    url: 'dashboard',
+                    views: {
+                        'Content': {
+                            templateUrl: '/views/dashboard/dashboard.html',
+                            controller: 'DashboardCtrl'
                         }
                     }
                 });
             $urlRouterProvider.otherwise('/');
         }
     ])
-    .run(function ($state, $stateParams, drawerParams, $rootScope) {
+    .run(function ($state, $stateParams, drawerParams, $deviceListeners, $rootScope) {
         $rootScope.$state = $state;
         $rootScope.drawerParams = drawerParams;
+        $deviceListeners.init();
+        $rootScope.$on('$stateChangeStart', function () {
+            drawerParams.close();
+        });
+        $rootScope.$on('$$back', function (event) {
+            if (drawerParams.isDrawerOpen) {
+                event.preventDefault();
+                event.defaultPrevented = true;
+                drawerParams.close();
+                $rootScope.$apply();
+            }
+        });
+        $rootScope.$on('$$menu', function (event) {
+            event.preventDefault();
+            event.defaultPrevented = true;
+            drawerParams.toggle();
+            $rootScope.$apply();
+        });
     });
