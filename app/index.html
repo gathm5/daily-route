@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles/daily-route.css">
     <!-- endbuild -->
 </head>
-<body ng-app="dailyRouteApp">
+<body ng-app="dailyRouteApp" dr-cloak>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -28,10 +28,8 @@
     <div class="drawer-pull container" ui-view="MainContent" fast-click></div>
     <div class="drawer-menu" ui-view="MenuPanel" fast-click></div>
 </drawer>
-<slide-out-menu bottom>
-    <div class="slide-up-menu" ui-view="SlideMenu">
-        This is slide up menu
-    </div>
+<slide-out-menu top height="auto">
+    <div class="slide-up-menu" ui-view="SlideMenu" stop-event></div>
 </slide-out-menu>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
@@ -50,6 +48,8 @@
     ga('create', 'UA-XXXXX-X');
     ga('send', 'pageview');
 </script>
+
+<script src="http://maps.google.com/maps/api/js?libraries=places"></script>
 
 <script src="cordova.js"></script>
 
@@ -87,6 +87,8 @@
 <script src="scripts/services/device-listeners.js"></script>
 <script src="scripts/controllers/dashboard/dashboard.js"></script>
 <script src="scripts/directives/route-label.js"></script>
+<script src="scripts/directives/dr-cloak.js"></script>
+<script src="scripts/controllers/common/add-route.js"></script>
 <!-- endbuild -->
 </body>
 </html>

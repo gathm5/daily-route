@@ -1,0 +1,12 @@
+[dr-cloak] {
+  opacity: 0.01;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  -webkit-transition: all 600ms ease-in;
+  transition: all 600ms ease-in;
+  &.ready {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

@@ -45,13 +45,17 @@ angular
                 .state('main.dashboard', {
                     url: 'dashboard',
                     views: {
-                        'Content': {
+                        'Content@main': {
                             templateUrl: '/views/dashboard/dashboard.html',
                             controller: 'DashboardCtrl'
+                        },
+                        'SlideMenu@': {
+                            templateUrl: '/views/common/add-route.html',
+                            controller: 'AddRouteCtrl'
                         }
                     }
                 });
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/dashboard');
         }
     ])
     .run(function ($state, $stateParams, drawerParams, slideOutMenuParams, $deviceListeners, $rootScope) {
