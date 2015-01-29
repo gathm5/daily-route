@@ -27,3 +27,24 @@
 .page-background() {
     background: url('../images/bg-pattern.png') repeat 0 0 @page-background !important;
 }
+
+.input-box() {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.button-default() {
+    background-color: #eeeeee;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    text-align: center;
+    padding: 12px 6px;
+    outline: none;
+    &.ng-click-active {
+        background-color: #dddddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+}

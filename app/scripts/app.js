@@ -18,7 +18,8 @@ angular
         'ngTouch',
         'ui.router',
         'gsDirectives',
-        'ngAutocomplete'
+        'ngAutocomplete',
+        'ngTell'
     ])
     .config([
         '$stateProvider',
@@ -86,7 +87,9 @@ angular
             $rootScope.$on('$$menu', function (event) {
                 event.preventDefault();
                 event.defaultPrevented = true;
-                drawerParams.toggle();
+                if (!slideOutMenuParams.isSlideOpen) {
+                    drawerParams.toggle();
+                }
                 $rootScope.$apply();
             });
         }

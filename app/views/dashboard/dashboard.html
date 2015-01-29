@@ -1,5 +1,8 @@
-<div class="dashboard">
-    <button ng-click="slideOutMenuParams.open()">
+<div class="dashboard" ng-tell="dashboard">
+    <button class="button-default block" ng-click="slideOutMenuParams.open()">
         Add Favorite
     </button>
+    <div data-ng-if="routes">
+        {{routes.routeA}} <i class="fa fa-arrow-right"></i> {{routes.routeB}}
+    </div>
 </div>

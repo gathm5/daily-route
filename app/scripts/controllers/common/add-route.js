@@ -10,10 +10,19 @@
 angular.module('dailyRouteApp')
     .controller('AddRouteCtrl', [
         '$scope',
-        function ($scope) {
+        'EventLibrary',
+        'slideOutMenuParams',
+        '$Tell',
+        function ($scope, EventLibrary, slideOutMenuParams, $Tell) {
             $scope.routes = {
                 routeA: null,
                 routeB: null
             };
+
+            $scope.add = function () {
+                $Tell.children('dashboard', EventLibrary.route.added, $scope.routes);
+                slideOutMenuParams.close();
+            };
+
         }
     ]);

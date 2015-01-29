@@ -1,10 +1,22 @@
 <div class="add-route">
     <label>
         <span>From</span>
-        <input type="text" ng-model="routes.routeA" ng-autocomplete/>
+
+        <div class="input-wrapper">
+            <input type="text" ng-model="routes.routeA" ng-autocomplete placeholder="Enter a starting address"/>
+            <span ng-show="routes.routeA" ng-click="routes.routeA = null"><i class="fa fa-times-circle"></i></span>
+        </div>
     </label>
     <label>
         <span>To</span>
-        <input type="text" ng-model="routes.routeB" ng-autocomplete/>
+
+        <div class="input-wrapper">
+            <input type="text" ng-model="routes.routeB" ng-autocomplete placeholder="Enter a destination address"/>
+            <span ng-show="routes.routeB" ng-click="routes.routeB = null"><i class="fa fa-times-circle"></i></span>
+        </div>
     </label>
+
+    <button class="button-default block" ng-click="add()">
+        Add Route
+    </button>
 </div>
