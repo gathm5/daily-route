@@ -58,28 +58,36 @@ angular
             $urlRouterProvider.otherwise('/dashboard');
         }
     ])
-    .run(function ($state, $stateParams, drawerParams, slideOutMenuParams, $deviceListeners, $rootScope) {
-        $rootScope.$state = $state;
-        $rootScope.drawerParams = drawerParams;
-        $rootScope.slideOutMenuParams = slideOutMenuParams;
-        $deviceListeners.init();
-        $rootScope.$on('$stateChangeStart', function () {
-            drawerParams.close();
-            slideOutMenuParams.close();
-        });
-        $rootScope.$on('$$back', function (event) {
-            if (drawerParams.isDrawerOpen || slideOutMenuParams.isSlideOpen) {
-                event.preventDefault();
-                event.defaultPrevented = true;
+    .run([
+        '$state',
+        '$stateParams',
+        'drawerParams',
+        'slideOutMenuParams',
+        'gsDeviceListeners',
+        '$rootScope',
+        function ($state, $stateParams, drawerParams, slideOutMenuParams, gsDeviceListeners, $rootScope) {
+            $rootScope.$state = $state;
+            $rootScope.drawerParams = drawerParams;
+            $rootScope.slideOutMenuParams = slideOutMenuParams;
+            gsDeviceListeners.init();
+            $rootScope.$on('$stateChangeStart', function () {
                 drawerParams.close();
                 slideOutMenuParams.close();
+            });
+            $rootScope.$on('$$back', function (event) {
+                if (drawerParams.isDrawerOpen || slideOutMenuParams.isSlideOpen) {
+                    event.preventDefault();
+                    event.defaultPrevented = true;
+                    drawerParams.close();
+                    slideOutMenuParams.close();
+                    $rootScope.$apply();
+                }
+            });
+            $rootScope.$on('$$menu', function (event) {
+                event.preventDefault();
+                event.defaultPrevented = true;
+                drawerParams.toggle();
                 $rootScope.$apply();
-            }
-        });
-        $rootScope.$on('$$menu', function (event) {
-            event.preventDefault();
-            event.defaultPrevented = true;
-            drawerParams.toggle();
-            $rootScope.$apply();
-        });
-    });
+            });
+        }
+    ]);
