@@ -54,18 +54,21 @@ angular
             $urlRouterProvider.otherwise('/');
         }
     ])
-    .run(function ($state, $stateParams, drawerParams, $deviceListeners, $rootScope) {
+    .run(function ($state, $stateParams, drawerParams, slideOutMenuParams, $deviceListeners, $rootScope) {
         $rootScope.$state = $state;
         $rootScope.drawerParams = drawerParams;
+        $rootScope.slideOutMenuParams = slideOutMenuParams;
         $deviceListeners.init();
         $rootScope.$on('$stateChangeStart', function () {
             drawerParams.close();
+            slideOutMenuParams.close();
         });
         $rootScope.$on('$$back', function (event) {
-            if (drawerParams.isDrawerOpen) {
+            if (drawerParams.isDrawerOpen || slideOutMenuParams.isSlideOpen) {
                 event.preventDefault();
                 event.defaultPrevented = true;
                 drawerParams.close();
+                slideOutMenuParams.close();
                 $rootScope.$apply();
             }
         });
