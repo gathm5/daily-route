@@ -1,9 +1,9 @@
 <div class="menu-panel">
     <ul>
-        <li class="menu-option" ng-click="$state.go('main.dashboard')">
+        <li class="menu-option" ng-click="$state.go('main.dashboard') && drawerParams.close()">
             Dashboard
         </li>
-        <li class="menu-option" ng-click="$state.go('main.settings')">
+        <li class="menu-option" ng-click="$state.go('main.settings') && drawerParams.close()">
             Settings
         </li>
     </ul>

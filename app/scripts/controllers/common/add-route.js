@@ -22,8 +22,11 @@ angular.module('dailyRouteApp')
 
             $scope.add = function () {
                 if ($scope.routes.routeA && $scope.routes.routeB) {
-                    RouteDataService.storeRoute(angular.copy($scope.routes));
-                    $Tell.children('dashboard', EventLibrary.route.added, angular.copy($scope.routes));
+                    RouteDataService
+                        .storeRoute(angular.copy($scope.routes))
+                        .then(function () {
+                            $Tell.children('dashboard', EventLibrary.route.added);
+                        });
                     slideOutMenuParams.close();
                 }
             };
