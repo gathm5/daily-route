@@ -19,12 +19,26 @@ angular
         'ui.router',
         'gsDirectives',
         'ngAutocomplete',
-        'ngTell'
+        'ngTell',
+        'LocalForageModule',
+        'angularMoment'
     ])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+        '$localForageProvider',
+        function ($stateProvider, $urlRouterProvider, $localForageProvider) {
+
+            /*$localForageProvider.config({
+             driver: 'localStorageWrapper', // if you want to force a driver
+             name: 'DailyRoute', // name of the database and prefix for your data, it is "lf" by default
+             version: 1.0, // version of the database, you shouldn't have to use this
+             storeName: 'dailyroutestorage', // name of the table
+             description: 'Store the daily routes'
+             });*/
+
+            $localForageProvider.setNotify(true, true); // itemSet, itemRemove
+
             $stateProvider
                 .state('main', {
                     url: '/',
@@ -34,7 +48,7 @@ angular
                             controller: 'MainContentCtrl'
                         },
                         'MenuPanel@': {
-                            templateUrl: '/views/common/menu-panel.html',
+                            templateUrl: '/views/menu/menu-panel.html',
                             controller: 'MenuPanelCtrl'
                         },
                         'Header@main': {
@@ -53,6 +67,15 @@ angular
                         'SlideMenu@': {
                             templateUrl: '/views/common/add-route.html',
                             controller: 'AddRouteCtrl'
+                        }
+                    }
+                })
+                .state('main.settings', {
+                    url: 'settings',
+                    views: {
+                        'Content@main': {
+                            templateUrl: '/views/menu/settings.html',
+                            controller: 'SettingsCtrl'
                         }
                     }
                 });

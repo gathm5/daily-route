@@ -4,9 +4,20 @@ angular.module('dailyRouteApp')
     .controller('DashboardCtrl', [
         '$scope',
         'EventLibrary',
-        function ($scope, EventLibrary) {
-            $scope.$on(EventLibrary.route.added, function (e, routes) {
-                $scope.routes = routes;
+        'RouteDataService',
+        function ($scope, EventLibrary, RouteDataService) {
+            function getRoutes() {
+                RouteDataService.getRoute().then(function (routes) {
+                    $scope.routes = routes;
+                    console.timeEnd('Local Storage');
+                });
+            }
+
+            $scope.$on(EventLibrary.route.added, function () {
+                //$scope.routes = routes;
+                getRoutes();
             });
+
+            getRoutes();
         }
     ]);

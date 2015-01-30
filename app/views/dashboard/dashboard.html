@@ -2,7 +2,9 @@
     <button class="button-default block" ng-click="slideOutMenuParams.open()">
         Add Favorite
     </button>
-    <div data-ng-if="routes">
-        {{routes.routeA}} <i class="fa fa-arrow-right"></i> {{routes.routeB}}
-    </div>
+    <ul ng-if="routes">
+        <li ng-repeat="route in routes">
+            {{route.routeA}} <i class="fa fa-arrow-right"></i> {{route.routeB}}
+        </li>
+    </ul>
 </div>

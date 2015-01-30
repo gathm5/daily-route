@@ -4,7 +4,7 @@
  * @ngdoc function
  * @name dailyRouteApp.controller:AddRouteCtrl
  * @description
- * # CommonAddRouteCtrl
+ * # AddRouteCtrl
  * Controller of the dailyRouteApp
  */
 angular.module('dailyRouteApp')
@@ -12,16 +12,20 @@ angular.module('dailyRouteApp')
         '$scope',
         'EventLibrary',
         'slideOutMenuParams',
+        'RouteDataService',
         '$Tell',
-        function ($scope, EventLibrary, slideOutMenuParams, $Tell) {
+        function ($scope, EventLibrary, slideOutMenuParams, RouteDataService, $Tell) {
             $scope.routes = {
                 routeA: null,
                 routeB: null
             };
 
             $scope.add = function () {
-                $Tell.children('dashboard', EventLibrary.route.added, $scope.routes);
-                slideOutMenuParams.close();
+                if ($scope.routes.routeA && $scope.routes.routeB) {
+                    RouteDataService.storeRoute(angular.copy($scope.routes));
+                    $Tell.children('dashboard', EventLibrary.route.added, angular.copy($scope.routes));
+                    slideOutMenuParams.close();
+                }
             };
 
         }
